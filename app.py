@@ -21,7 +21,12 @@ def chips_new():
 @app.route('/chips', methods=['POST'])
 def chips_submit():
     """Submit a new playlist."""
-    print(request.form.to_dict())
+    added_chip = {
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
+        'url': request.form.get('url')
+    }
+    chips.insert_one(added_chip)
     return redirect(url_for('chips_index'))
 
 if __name__ == '__main__':
