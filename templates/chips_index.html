@@ -1,0 +1,15 @@
+<!-- templates/playlists_index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 align="center">Chip lister</h1>
+
+    <a href='/chips/new'>New Playlist</a>
+
+    {% if chips_items %}
+        {% for chip in chips_items %}
+            <h2>{{ chip.title }}</h2>
+            <small>{{ chip.description }}</small>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

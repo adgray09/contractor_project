@@ -1,0 +1,24 @@
+<!-- templates/playlists_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/chips'>
+    <fieldset>
+    <legend>New Chip Listing</legend>
+    <!-- TITLE -->
+    <p>
+        <label for='title'>Name of Chip</label><br>
+        <input type='text' name='title' />
+    </p>
+    <p>
+        <label for='description'>Description of chip</label><br>
+        <input type='text' name='description' />
+    </p>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save Chip</button>
+    </p>
+</form>
+{% endblock %}
