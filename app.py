@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os 
 
-host = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/contractor')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/contractor')
 client = MongoClient(host=host)
 db = client.Contractor
 chips = db.chips
@@ -15,6 +15,12 @@ def chips_show(chips_id):
     """Show a single playlist."""
     chip = chips.find_one({'_id': ObjectId(chips_id)})
     return render_template('chip_item.html', chip=chip)
+
+@app.route('/chip/<chip_id>/delete', methods=['POST'])
+def playlists_delete(chip_id):
+    """Delete one playlist."""
+    chips.delete_one({'_id': ObjectId(chip_id)})
+    return redirect(url_for('chips_index'))
 
 @app.route('/')
 def chips_index():
