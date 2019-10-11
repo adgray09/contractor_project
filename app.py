@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 client = MongoClient()
 db = client.Contractor
 chips = db.chips
 
 app = Flask(__name__)
+
+@app.route('/chip/<chips_id>')
+def chips_show(chips_id):
+    """Show a single playlist."""
+    chip = chips.find_one({'_id': ObjectId(chips_id)})
+    return render_template('chip_item.html', chip=chip)
 
 @app.route('/')
 def chips_index():
@@ -26,6 +33,7 @@ def chips_submit():
         'description': request.form.get('description'),
         'url': request.form.get('url')
     }
+    print(added_chip)
     chips.insert_one(added_chip)
     return redirect(url_for('chips_index'))
 

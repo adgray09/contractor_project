@@ -4,11 +4,11 @@
 {% block content %}
     <h1 align="center">Chip lister</h1>
 
-    <a href='/chips/new'>New Playlist</a>
+    <a href='/chips/new'>New Chip Log</a>
 
     {% if chips_items %}
         {% for chip in chips_items %}
-            <h2>{{ chip.title }}</h2>
+        <h2><a href='/chip/{{ chip._id }}'>{{ chip.title }}</a></h2>
             <small>{{ chip.description }}</small>
         {% endfor %}
     {% endif %}
