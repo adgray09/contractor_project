@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os 
 
-host = os.environ.getenv('MONGODB_URI', 'mongodb://localhost:27017/contractor')
+host = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/contractor')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.Contractor
 chips = db.chips
