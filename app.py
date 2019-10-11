@@ -5,7 +5,7 @@ import os
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/contractor')
 client = MongoClient(host=host)
-db = client.Contractor
+db = client.get_default_database()
 chips = db.chips
 
 app = Flask(__name__)
@@ -50,6 +50,19 @@ def chips_submit():
     print(added_chip)
     chips.insert_one(added_chip)
     return redirect(url_for('chips_index'))
+
+@app.route('/chip/<chip_id>', methods=['POST'])
+def chips_update(chip_id):
+    """Submit an edited playlist."""
+    updated_chip = {
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
+        
+    }
+    chips.update_one(
+        {'_id': ObjectId(chip_id)},
+        {'$set': updated_chip})
+    return redirect(url_for('chips_update', chip_id=chip_id))
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

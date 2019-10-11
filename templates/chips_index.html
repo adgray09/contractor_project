@@ -2,10 +2,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 align="center">Chip lister</h1>
+    <h1 style="color: green;"align="center">Chip lister</h1>
 
-    <h2 align="center">Welcome to Chip lister! Where you can list your favorite chips</h2>
-    <a href='/chips/new'>New Chip Log</a>
+    <h2 style="color: red" align="center">Welcome to Chip lister! Where you can list your favorite chips</h2>
+    <button><a href='/chips/new'>Add your favorite chips!</a></button>
 
     {% if chips_items %}
         {% for chip in chips_items %}
