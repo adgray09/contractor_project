@@ -22,6 +22,12 @@ def playlists_delete(chip_id):
     chips.delete_one({'_id': ObjectId(chip_id)})
     return redirect(url_for('chips_index'))
 
+@app.route('/chip/<chip_id>/edit')
+def chips_edit(chip_id):
+    """Show the edit form for a playlist."""
+    chip = chips.find_one({'_id': ObjectId(chip_id)})
+    return render_template('chips_edit.html', chip=chip)
+
 @app.route('/')
 def chips_index():
     """Show all chips."""

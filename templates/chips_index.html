@@ -4,11 +4,12 @@
 {% block content %}
     <h1 align="center">Chip lister</h1>
 
+    <h2 align="center">Welcome to Chip lister! Where you can list your favorite chips</h2>
     <a href='/chips/new'>New Chip Log</a>
 
     {% if chips_items %}
         {% for chip in chips_items %}
-        <h2><a href='/chip/{{ chip._id }}'>{{ chip.title }}</a></h2>
+        <h3><a href='/chip/{{ chip._id }}'>{{ chip.title }}</a></h3>
             <small>{{ chip.description }}</small>
         {% endfor %}
     {% endif %}
