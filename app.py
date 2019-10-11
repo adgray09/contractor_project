@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import os 
 
 host = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/contractor')
-client = MongoClient(host=f'{host}?retryWrites=false')
+client = MongoClient(host=host)
 db = client.Contractor
 chips = db.chips
 
