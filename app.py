@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os 
 
-host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/contractor')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Contractor')
 client = MongoClient(host=host)
 db = client.get_default_database()
 chips = db.chips
@@ -65,4 +65,4 @@ def chips_update(chip_id):
     return redirect(url_for('chips_update', chip_id=chip_id))
 
 if __name__ == '__main__':
-  app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
